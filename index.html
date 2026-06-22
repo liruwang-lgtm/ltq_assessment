@@ -117,6 +117,9 @@
   .btn-cta.outline:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}
   .btn-retake{background:none;border:none;cursor:pointer;font-size:.82rem;color:var(--mid);text-decoration:underline;margin-top:1rem;font-family:var(--sans)}
   .btn-retake:hover{color:var(--navy)}
+  .btn-save{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:.65rem 1.5rem;border-radius:8px;font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.03em;cursor:pointer;transition:all .2s;margin-top:.5rem}
+  .btn-save:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.55);transform:translateY(-1px)}
+  .print-header{font-family:var(--serif);font-size:1.1rem;color:#fff;margin-bottom:.5rem}
   .success-banner{background:#e8f5ee;border:1px solid #a8d8bc;border-radius:8px;padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;font-size:.88rem;color:#1a5c3a}
   .validation-msg{background:#fff3ed;border:1px solid #f4a46a;border-radius:8px;padding:.85rem 1.25rem;font-size:.85rem;color:#8b3a00;margin-bottom:1rem;display:none}
   .validation-msg.visible{display:block}
@@ -124,6 +127,19 @@
   footer strong{color:rgba(255,255,255,.8)}
   .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:.4rem}
   @keyframes spin{to{transform:rotate(360deg)}}
+  @media print{
+    .site-header,.hero,.intro-card,.progress-wrap,.validation-msg,.success-banner,
+    .survey-form,.no-print,footer,.btn-retake{display:none !important}
+    body{background:#fff}
+    .wrap{max-width:100%;padding:0}
+    .results{display:block !important;margin-bottom:0}
+    .results-hero{background:#0f3460 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;box-shadow:none}
+    .print-header{display:block !important}
+    .result-card,.cta-card{box-shadow:none;break-inside:avoid}
+    .result-card-header,.result-card-header.to,.result-card-header.cr,.result-card-header.aw,.cta-card{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .cta-buttons{display:none}
+    .cta-card p{margin-bottom:.5rem}
+  }
   @media (max-width:540px){
     .info-grid{grid-template-columns:1fr}
     .scale-row{flex-direction:column;align-items:flex-start;gap:.5rem}
@@ -269,6 +285,7 @@
   <div class="results" id="results">
 
     <div class="results-hero" id="results-hero">
+      <div class="print-header" style="display:none"></div>
       <div class="eyebrow">Your LTQ Self-Assessment Results</div>
       <h2 id="r-stage-name">—</h2>
       <p class="stage-ask" id="r-stage-ask">—</p>
@@ -277,6 +294,7 @@
         <div class="bar-row"><div class="bar-label">Cruising</div><div class="bar-track"><div class="bar-fill cr" id="bar-cr" style="width:0%"></div></div><div class="bar-pct" id="pct-cr">0/30</div></div>
         <div class="bar-row"><div class="bar-label">Awakening</div><div class="bar-track"><div class="bar-fill aw" id="bar-aw" style="width:0%"></div></div><div class="bar-pct" id="pct-aw">0/30</div></div>
       </div>
+      <button class="btn-save no-print" onclick="window.print()">⬇ Save / Print My Results</button>
     </div>
 
     <div class="result-card" id="result-detail">
@@ -392,6 +410,11 @@ function showResults(scores) {
 
   document.getElementById('r-stage-name').textContent = s.name;
   document.getElementById('r-stage-ask').textContent = s.ask;
+
+  const nameVal = document.getElementById('f-name').value.trim();
+  const dateStr = new Date().toLocaleDateString('en-CA', { year:'numeric', month:'long', day:'numeric' });
+  document.querySelector('.print-header').textContent =
+    'Lead Through It™ — LTQ Self-Assessment' + (nameVal ? '  ·  ' + nameVal : '') + '  ·  ' + dateStr;
 
   setTimeout(() => {
     document.getElementById('bar-to').style.width = (scores.to / max * 100) + '%';
