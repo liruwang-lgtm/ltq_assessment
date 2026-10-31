@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Leadership Transition Check-In</title>
+<style>
+/* Layout: one calm reading column — intro, 12 statements, then the result card in the stage's color. */
+:root {
+  --navy: #1F3864;
+  --ink: #1d2433;
+  --muted: #5a6475;
+  --paper: #f7f8fb;
+  --card: #ffffff;
+  --line: #d9dee8;
+  --accent: #2E5FA3;
+  --takeoff: #2E5FA3;
+  --cruising: #1F8A4C;
+  --awakening: #C4651A;
+  --font-display: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --font-body: Georgia, "Times New Roman", serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --navy: #a9c1ea; --ink: #e6e9f0; --muted: #a3acbc; --paper: #11151d; --card: #1a202b;
+    --line: #2e3646; --accent: #7fa6e0; --takeoff: #7fa6e0; --cruising: #5cc68a; --awakening: #f0a060;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --navy: #a9c1ea; --ink: #e6e9f0; --muted: #a3acbc; --paper: #11151d; --card: #1a202b;
+  --line: #2e3646; --accent: #7fa6e0; --takeoff: #7fa6e0; --cruising: #5cc68a; --awakening: #f0a060;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+main { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; display: grid; gap: 28px; }
+h1, h2, h3 { font-family: var(--font-display); color: var(--navy); line-height: 1.25; text-wrap: balance; margin: 0; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.05rem; }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-display); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+header { display: grid; gap: 10px; border-bottom: 2px solid var(--navy); padding-bottom: 20px; }
+.intro { display: grid; gap: 12px; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 22px; display: grid; gap: 16px; }
+.scale { font-family: var(--font-display); font-size: .85rem; color: var(--muted); }
+ol.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: q; }
+.item { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 12px; }
+.item.missing { border-color: var(--awakening); }
+.item legend { display: flex; gap: 10px; padding: 0; font-size: 1.02rem; }
+.item legend .n { font-family: var(--font-display); font-weight: 700; color: var(--accent); min-width: 1.6em; font-variant-numeric: tabular-nums; }
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.choices { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 12px; }
+.choices input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.choices label { display: grid; justify-items: center; gap: 2px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 4px; cursor: pointer; font-family: var(--font-display); text-align: center; }
+.choices label b { font-size: 1.05rem; color: var(--ink); }
+.choices label span { font-size: .7rem; color: var(--muted); line-height: 1.2; }
+.choices input:checked + label { background: var(--accent); border-color: var(--accent); }
+.choices input:checked + label b, .choices input:checked + label span { color: #fff; }
+.choices input:focus-visible + label { outline: 3px solid var(--navy); outline-offset: 2px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+button { font-family: var(--font-display); font-size: 1rem; border-radius: 8px; padding: 12px 20px; cursor: pointer; border: 1px solid var(--accent); }
+button.primary { background: var(--accent); color: #fff; }
+button.secondary { background: transparent; color: var(--accent); }
+button:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+.progress { font-family: var(--font-display); font-size: .9rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.note { font-family: var(--font-display); font-size: .9rem; color: var(--awakening); }
+#result[hidden] { display: none; }
+.result { border-left: 6px solid var(--stage, var(--accent)); }
+.result .stage-name { color: var(--stage, var(--accent)); font-size: 1.6rem; }
+.result dl { margin: 0; display: grid; gap: 14px; }
+.result dt { font-family: var(--font-display); font-weight: 700; color: var(--navy); font-size: .95rem; }
+.result dd { margin: 4px 0 0; }
+.ask { font-weight: bold; }
+.question { font-style: italic; }
+.scores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.score { border: 1px solid var(--line); border-radius: 8px; padding: 10px; text-align: center; font-family: var(--font-display); }
+.score b { display: block; font-size: 1.2rem; font-variant-numeric: tabular-nums; color: var(--ink); }
+.score span { font-size: .8rem; color: var(--muted); }
+.score.top { border-color: var(--stage, var(--accent)); }
+.next ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+a { color: var(--accent); }
+footer { font-family: var(--font-display); font-size: .8rem; color: var(--muted); text-align: center; }
+@media (max-width: 480px) {
+  h1 { font-size: 1.6rem; }
+  .choices label span { display: none; }
+  .scores { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .choices label { transition: background-color .15s, border-color .15s; }
+}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">An LTQ&trade; tool by Liru Wang, PhD, ICF Master Certified Coach</p>
+    <h1>The Leadership Transition Check-In</h1>
+    <p>12 statements &middot; about 3 minutes</p>
+  </header>
+
+  <section class="intro" aria-labelledby="intro-h">
+    <h2 id="intro-h">Where are you right now in your leadership?</h2>
+    <p>Every leader moves through seasons: times when everything feels new, times when things run smoothly but something feels missing, and times when bigger questions start to surface. Each season asks something different of you.</p>
+    <p>This check-in helps you see which season you're in right now. It shows <strong>where you are now, not what you are capable of</strong>, and there are no right or wrong answers.</p>
+    <p>Choose how true each statement has been for you <strong>over the past two to three months</strong>. Go with your first honest answer.</p>
+  </section>
+
+  <form id="checkin" novalidate>
+    <div class="panel">
+      <p class="scale">1 = Not at all true &middot; 2 = Rarely &middot; 3 = Sometimes &middot; 4 = Often &middot; 5 = Very true</p>
+      <ol class="items" id="items"></ol>
+      <div class="actions">
+        <button type="submit" class="primary" id="submit">See my result</button>
+        <span class="progress" id="progress" aria-live="polite">0 of 12 answered</span>
+      </div>
+      <p class="note" id="note" role="alert" hidden></p>
+    </div>
+  </form>
+
+  <section id="result" class="panel result" hidden aria-live="polite" tabindex="-1"></section>
+
+  <footer>Lead Through It&trade; &middot; Leadership Transition Intelligence&trade; &middot; &copy; 2026 Liru Wang</footer>
+</main>
+
+<script>
+// Optional: on your own website, paste a Formspree endpoint here to receive results (and the optional email).
+const FORM_ENDPOINT = "https://formspree.io/f/xyeenzvr";
+
+const STATEMENTS = [
+  "I sometimes wonder whether I really belong at this level.",
+  "I’m good at what I do, yet something important feels quietly missing.",
+  "I’m asking bigger questions about purpose and what I want my work to mean.",
+  "My work relationships run smoothly, but they don’t feel as deep or honest as they once did.",
+  "I’m still figuring out who I can count on and how things really get done around here.",
+  "I notice a gap between how I show up at work and the person I sense I’m becoming.",
+  "I’m leaning on what made me successful before, even when I’m not sure it fits what’s needed now.",
+  "I care more about helping others grow than about advancing my own position.",
+  "I get things done, but I’m not as energized by my work as I used to be.",
+  "Something in my current role feels like it’s coming to an end, even if I can’t yet say what comes next.",
+  "I’m so busy delivering that I rarely step back to ask whether my work is still pointed at what matters most.",
+  "I’m working harder than ever, but I’m not always sure my effort is going to the right places."
+];
+const LABELS = ["Not at all", "Rarely", "Sometimes", "Often", "Very true"];
+const KEY = { takeoff: [1, 5, 7, 12], cruising: [2, 4, 9, 11], awakening: [3, 6, 8, 10] };
+
+const STAGES = {
+  takeoff: {
+    name: "Taking-Off", color: "var(--takeoff)", asks: "courage",
+    feel: "Everything is new. You’re learning the people, the rules and the pace while expectations rise faster than your comfort. Moments of self-doubt are common here, even for very capable leaders. The role changed on day one; your sense of yourself in it is still catching up.",
+    askText: "The courage to act before you feel fully ready, to learn in public, and to let go of what made you successful before.",
+    question: "Who is this role asking me to become?",
+    step: "Name one habit from your previous role you’re still leaning on, and try one small way of leading differently."
+  },
+  cruising: {
+    name: "Cruising", color: "var(--cruising)", asks: "reflection",
+    feel: "You know the job and you do it well. From the outside, things look settled. Inside, something feels quieter than it used to: less energy, less depth, or a sense that something important is missing.",
+    askText: "Slowing down long enough to ask whether your work and relationships still fit who you are becoming.",
+    question: "Is what I’m doing still aligned with who I’m becoming?",
+    step: "At the end of each day, note one thing that gave you energy and one that drained it. Look for the pattern on Friday."
+  },
+  awakening: {
+    name: "Awakening", color: "var(--awakening)", asks: "truth",
+    feel: "Bigger questions are surfacing about purpose, meaning and what you want your leadership to stand for. Something may feel like it’s ending before you can name what’s next. This isn’t a crisis. It’s your inner life catching up with your outer success.",
+    askText: "The willingness to hold an honest question long enough for a real answer to emerge.",
+    question: "Who am I becoming, and is that who I choose to be?",
+    step: "Take ten quiet minutes to write down what you would do if you weren’t afraid of anyone’s judgment."
+  }
+};
+
+// Pure scoring: returns totals and the result type.
+function score(answers) {
+  const totals = {};
+  for (const k in KEY) totals[k] = KEY[k].reduce((s, q) => s + answers[q - 1], 0);
+  const ranked = Object.keys(totals).sort((a, b) => totals[b] - totals[a]);
+  const [first, second] = ranked;
+  if (totals[first] < 12) return { type: "steady", totals, ranked };
+  if (totals[first] - totals[second] <= 3) return { type: "between", totals, ranked, stages: [first, second] };
+  return { type: "stage", totals, ranked, stage: first };
+}
+
+const list = document.getElementById("items");
+STATEMENTS.forEach((text, i) => {
+  const n = i + 1;
+  const li = document.createElement("li");
+  li.className = "item";
+  li.id = "item-" + n;
+  const choices = LABELS.map((lab, v) =>
+    `<input type="radio" name="q${n}" id="q${n}-${v + 1}" value="${v + 1}"><label for="q${n}-${v + 1}"><b>${v + 1}</b><span>${lab}</span></label>`
+  ).join("");
+  li.innerHTML = `<fieldset><legend><span class="n">${n}</span><span>${text}</span></legend><div class="choices">${choices}</div></fieldset>`;
+  list.appendChild(li);
+});
+
+const form = document.getElementById("checkin");
+const progress = document.getElementById("progress");
+const note = document.getElementById("note");
+const resultEl = document.getElementById("result");
+
+function readAnswers() {
+  return STATEMENTS.map((_, i) => {
+    const c = form.querySelector(`input[name="q${i + 1}"]:checked`);
+    return c ? Number(c.value) : null;
+  });
+}
+form.addEventListener("change", (e) => {
+  const a = readAnswers();
+  progress.textContent = a.filter(v => v !== null).length + " of 12 answered";
+  const li = e.target.closest(".item");
+  if (li) li.classList.remove("missing");
+});
+
+function stageBlock(key, heading) {
+  const s = STAGES[key];
+  return `<h3 class="stage-name" style="color:${s.color}">${heading || "You’re in " + s.name}</h3>
+  <dl>
+    <div><dt>What it can feel like</dt><dd>${s.feel}</dd></div>
+    <div><dt>What this season asks of you</dt><dd><span class="ask">${s.asks.charAt(0).toUpperCase() + s.asks.slice(1)}.</span> ${s.askText}</dd></div>
+    <div><dt>A question to sit with</dt><dd class="question">${s.question}</dd></div>
+    <div><dt>One small step this week</dt><dd>${s.step}</dd></div>
+  </dl>`;
+}
+
+function render(r) {
+  const names = { takeoff: "Taking-Off", cruising: "Cruising", awakening: "Awakening" };
+  let body = "", topColor = "var(--accent)", summary = "";
+  if (r.type === "stage") {
+    topColor = STAGES[r.stage].color;
+    body = stageBlock(r.stage);
+    summary = "You’re in " + names[r.stage];
+  } else if (r.type === "between") {
+    const [a, b] = r.stages;
+    topColor = STAGES[a].color;
+    summary = "Between " + names[a] + " and " + names[b];
+    body = `<h3 class="stage-name" style="color:${topColor}">You’re between two seasons: ${names[a]} and ${names[b]}</h3>
+      <p>Your answers point to two seasons at once. That’s common, and it’s useful to know. The space between seasons has its own intelligence: something is ending while something else is beginning. Read both and notice which one feels truer this week.</p>
+      ${stageBlock(a, names[a])}${stageBlock(b, names[b])}`;
+  } else {
+    summary = "A steady season";
+    body = `<h3 class="stage-name">You’re in a steady season</h3>
+      <p>None of the three seasons stands out right now. You may be in a period of relative stability, or at the very start of a change that hasn’t fully registered yet. Both are worth noticing. Try this check-in again in four to six weeks.</p>`;
+  }
+  const scoreTiles = ["takeoff", "cruising", "awakening"].map(k =>
+    `<div class="score${r.ranked[0] === k && r.type !== "steady" ? " top" : ""}"><b>${r.totals[k]} / 20</b><span>${names[k]}</span></div>`).join("");
+  const emailBlock = FORM_ENDPOINT ? `
+    <form id="sendcopy" class="actions" novalidate>
+      <label for="email" class="scale">Email me a copy (optional)</label>
+      <input id="email" type="email" autocomplete="email" placeholder="you@example.com" style="font:inherit;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)">
+      <button type="submit" class="secondary">Send</button>
+      <span class="progress" id="sendstatus"></span>
+      <p class="scale">Your email is used only to send your result and occasional insights from Liru. Unsubscribe anytime.</p>
+    </form>` : "";
+  resultEl.style.setProperty("--stage", topColor);
+  resultEl.innerHTML = `
+    <p class="eyebrow">Your result</p>
+    ${body}
+    <div class="scores" aria-label="Your totals">${scoreTiles}</div>
+    <div class="next">
+      <h3>These three seasons have names</h3>
+      <p>Taking-Off, Cruising and Awakening are the three stages of Leadership Transition Intelligence&trade; (LTQ&trade;), from <em>Lead Through It</em> by Liru Wang. Leaders move through them many times across a career, each time at a higher altitude.</p>
+      <h3 style="margin-top:14px">Want to go deeper?</h3>
+      <ul>
+        <li>Take the full 18-question LTQ&trade; Self-Assessment, which also shows which part of your leadership is most activated: who you are, the people you lead with, or how your leadership lands in the wider world.</li>
+        <li>Read <em>Lead Through It</em>.</li>
+        <li>Subscribe to <em>Transition Intelligence in Action</em> on LinkedIn.</li>
+        <li>Book a complimentary discovery conversation at <a href="https://www.leadershiptransitionintelligence.com" target="_blank" rel="noopener">www.leadershiptransitionintelligence.com</a></li>
+      </ul>
+      <p style="margin-top:12px"><em>Wherever you are in your transition, I’ll meet you there.</em></p>
+    </div>
+    <div class="actions">
+      <button type="button" class="secondary" id="copy">Copy my result</button>
+      <button type="button" class="secondary" id="restart">Start again</button>
+      <span class="progress" id="copystatus" aria-live="polite"></span>
+    </div>
+    ${emailBlock}`;
+  resultEl.hidden = false;
+  resultEl.focus();
+
+  const copyText = `My Leadership Transition Check-In result: ${summary}. Taking-Off ${r.totals.takeoff}/20, Cruising ${r.totals.cruising}/20, Awakening ${r.totals.awakening}/20.`;
+  document.getElementById("copy").addEventListener("click", async () => {
+    const st = document.getElementById("copystatus");
+    try { await navigator.clipboard.writeText(copyText); st.textContent = "Copied."; }
+    catch (err) { st.textContent = "Copy isn’t available here. Select the result text to copy it."; }
+  });
+  document.getElementById("restart").addEventListener("click", () => {
+    form.reset(); resultEl.hidden = true; progress.textContent = "0 of 12 answered";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  if (FORM_ENDPOINT) {
+    document.getElementById("sendcopy").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const st = document.getElementById("sendstatus");
+      const email = document.getElementById("email").value.trim();
+      if (!/^\S+@\S+\.\S+$/.test(email)) { st.textContent = "Please enter a valid email."; return; }
+      try {
+        const res = await fetch(FORM_ENDPOINT, { method: "POST", headers: { "Accept": "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify({ email, result: summary, ...r.totals, answers: readAnswers().join(",") }) });
+        st.textContent = res.ok ? "Sent. Check your inbox." : "That didn’t go through. Please try again.";
+      } catch (err) { st.textContent = "That didn’t go through. Please try again."; }
+    });
+  }
+}
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const a = readAnswers();
+  const missing = a.map((v, i) => v === null ? i + 1 : null).filter(Boolean);
+  document.querySelectorAll(".item").forEach(li => li.classList.remove("missing"));
+  if (missing.length) {
+    missing.forEach(n => document.getElementById("item-" + n).classList.add("missing"));
+    note.textContent = "Please answer statement" + (missing.length > 1 ? "s " : " ") + missing.join(", ") + " to see your result.";
+    note.hidden = false;
+    document.getElementById("item-" + missing[0]).scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+  note.hidden = true;
+  const r = score(a);
+  render(r);
+  // On your own website: record each completed check-in anonymously (pilot data).
+  if (FORM_ENDPOINT) {
+    const names = { takeoff: "Taking-Off", cruising: "Cruising", awakening: "Awakening" };
+    const result = r.type === "stage" ? names[r.stage]
+      : r.type === "between" ? "Between " + names[r.stages[0]] + " and " + names[r.stages[1]]
+      : "Steady season";
+    fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify({ tool: "Leadership Transition Check-In", result, takeoff: r.totals.takeoff,
+        cruising: r.totals.cruising, awakening: r.totals.awakening, answers: a.join(","),
+        source: (document.referrer || "direct") })
+    }).catch(() => {});
+  }
+});
+if (FORM_ENDPOINT) {
+  const p = document.createElement("p");
+  p.className = "scale";
+  p.textContent = "Your answers are recorded anonymously to help improve this check-in.";
+  document.querySelector("#checkin .actions").after(p);
+}
+
+if (typeof module !== "undefined") module.exports = { score };
+</script>
+</body>
+</html>
