@@ -247,11 +247,11 @@ function render(r) {
     `<div class="score${r.ranked[0] === k && r.type !== "steady" ? " top" : ""}"><b>${r.totals[k]} / 20</b><span>${names[k]}</span></div>`).join("");
   const emailBlock = FORM_ENDPOINT ? `
     <form id="sendcopy" class="actions" novalidate>
-      <label for="email" class="scale">Email me a copy (optional)</label>
+      <label for="email" class="scale"><strong>Send my result to Liru</strong> (optional). Want to talk about what your result means for you? Add your email and send it to Liru.</label>
       <input id="email" type="email" autocomplete="email" placeholder="you@example.com" style="font:inherit;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)">
-      <button type="submit" class="secondary">Send</button>
+      <button type="submit" class="secondary">Send to Liru</button>
       <span class="progress" id="sendstatus"></span>
-      <p class="scale">Your email is used only to send your result and occasional insights from Liru. Unsubscribe anytime.</p>
+      <p class="scale">Your result and email go only to Liru, so she can reply to you. They are never shared.</p>
     </form>` : "";
   resultEl.style.setProperty("--stage", topColor);
   resultEl.innerHTML = `
@@ -296,8 +296,8 @@ function render(r) {
       if (!/^\S+@\S+\.\S+$/.test(email)) { st.textContent = "Please enter a valid email."; return; }
       try {
         const res = await fetch(FORM_ENDPOINT, { method: "POST", headers: { "Accept": "application/json", "Content-Type": "application/json" },
-          body: JSON.stringify({ email, result: summary, ...r.totals, answers: readAnswers().join(",") }) });
-        st.textContent = res.ok ? "Sent. Check your inbox." : "That didn’t go through. Please try again.";
+          body: JSON.stringify({ tool: "Check-In: result sent to Liru", email, result: summary, ...r.totals, answers: readAnswers().join(",") }) });
+        st.textContent = res.ok ? "Sent to Liru. Thank you!" : "That didn’t go through. Please try again.";
       } catch (err) { st.textContent = "That didn’t go through. Please try again."; }
     });
   }
