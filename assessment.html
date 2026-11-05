@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The LTQ Self-Assessment — Find Your Transition Stage</title>
+<meta name="description" content="A free 18-question self-assessment from Lead Through It. Find which leadership transition stage you are in and what it is asking of you. About six minutes.">
+<link rel="canonical" href="https://leadershiptransitionintelligence.com/assessment.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0f3460; --navy-mid:#1a4a80; --navy-light:#e8f0f8; --navy-pale:#f3f7fb;
+    --green:#0a5c3a; --amber:#7a3500; --gold:#c9922a; --dark:#1a1a2e; --mid:#444455;
+    --light:#f8f9fc; --border:#dde4ee; --white:#ffffff;
+    --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',system-ui,sans-serif;
+    --radius:10px; --shadow:0 2px 20px rgba(15,52,96,.08); --shadow-lg:0 8px 40px rgba(15,52,96,.14);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--light);color:var(--dark);min-height:100vh;line-height:1.6}
+  .site-header{background:var(--navy);padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(15,52,96,.3)}
+  .logo{color:#fff;font-family:var(--serif);font-size:1.35rem;font-weight:600;letter-spacing:.02em}
+  .logo span{color:var(--gold)}
+  .header-tag{color:rgba(255,255,255,.55);font-size:.75rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase}
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,#1a3a6e 60%,#0d2848 100%);color:#fff;text-align:center;padding:4rem 2rem 3.5rem;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(201,146,42,.12) 0%,transparent 70%);pointer-events:none}
+  .hero-eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
+  .hero h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:500;line-height:1.15;margin-bottom:.75rem}
+  .hero h1 em{color:var(--gold);font-style:italic}
+  .hero-sub{font-size:1rem;color:rgba(255,255,255,.7);max-width:540px;margin:0 auto 1.5rem;line-height:1.7}
+  .hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;font-size:.78rem;color:rgba(255,255,255,.5)}
+  .hero-meta span{display:flex;align-items:center;gap:.35rem}
+  .hero-meta span::before{content:'·';color:var(--gold)}
+  .hero-meta span:first-child::before{display:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 1.25rem}
+  .intro-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 2.25rem;margin:2rem auto;box-shadow:var(--shadow)}
+  .intro-card h2{font-family:var(--serif);font-size:1.4rem;color:var(--navy);margin-bottom:.75rem}
+  .intro-card p{font-size:.9rem;color:var(--mid);line-height:1.75;margin-bottom:.6rem}
+  .intro-card p:last-child{margin-bottom:0}
+  .intro-card strong{color:var(--navy);font-weight:600}
+  .survey-form{margin-bottom:3rem}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  .field label{display:block;font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);margin-bottom:.35rem}
+  .field label .req{color:#c04a00;font-size:.75rem;font-weight:400;text-transform:none;letter-spacing:normal}
+  .field input,.field select{width:100%;border:1px solid var(--border);border-radius:6px;padding:.55rem .75rem;font-family:var(--sans);font-size:.88rem;color:var(--dark);background:var(--light);transition:border-color .2s,box-shadow .2s;outline:none}
+  .field input:focus,.field select:focus{border-color:var(--navy-mid);box-shadow:0 0 0 3px rgba(15,52,96,.1)}
+  .stage-section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.25rem;box-shadow:var(--shadow)}
+  .stage-header{padding:1rem 1.75rem;display:flex;align-items:center;gap:1rem;background:var(--navy)}
+  .stage-header.sec-b{background:var(--green)}
+  .stage-header.sec-c{background:var(--amber)}
+  .stage-num{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .stage-header-text h3{font-family:var(--serif);font-size:1.25rem;color:#fff;font-weight:500}
+  .stage-header-text p{font-size:.72rem;color:rgba(255,255,255,.65);font-weight:400;letter-spacing:.06em;text-transform:uppercase;margin-top:.1rem}
+  .questions-list{padding:.5rem 0}
+  .question{padding:1.1rem 1.75rem;border-bottom:1px solid var(--border);transition:background .15s}
+  .question:last-child{border-bottom:none}
+  .question:hover{background:var(--navy-pale)}
+  .q-row{display:flex;gap:1rem;align-items:flex-start}
+  .q-num{font-size:.72rem;font-weight:700;color:var(--navy);background:var(--navy-light);border-radius:4px;padding:.2rem .45rem;margin-top:.1rem;flex-shrink:0}
+  .q-text{font-size:.92rem;color:var(--dark);line-height:1.6;flex:1}
+  .scale-row{display:flex;gap:.4rem;margin-top:.85rem;align-items:flex-end}
+  .scale-label{font-size:.65rem;color:var(--mid);white-space:nowrap;padding-bottom:.15rem;line-height:1;min-width:52px}
+  .scale-label.right{text-align:right}
+  .scale-options{display:flex;gap:.4rem;flex:1;justify-content:center}
+  .scale-opt{display:flex;flex-direction:column;align-items:center;gap:.3rem}
+  .scale-opt input[type="radio"]{display:none}
+  .scale-opt label{width:40px;height:40px;border:1.5px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:600;color:var(--mid);cursor:pointer;transition:all .15s;user-select:none}
+  .scale-opt input[type="radio"]:checked+label{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 2px 8px rgba(15,52,96,.3);transform:translateY(-1px)}
+  .scale-opt label:hover{border-color:var(--navy-mid);color:var(--navy);background:var(--navy-pale)}
+  .question.unanswered{background:#fff8f0}
+  .question.unanswered .q-text{color:#c04a00}
+  .submit-area{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem 2rem;text-align:center;box-shadow:var(--shadow);margin-bottom:1.5rem}
+  .submit-area p{font-size:.85rem;color:var(--mid);margin-bottom:1.25rem}
+  .btn-submit{background:var(--navy);color:#fff;border:none;padding:.9rem 3rem;font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-radius:8px;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 16px rgba(15,52,96,.25)}
+  .btn-submit:hover{background:var(--navy-mid);transform:translateY(-1px);box-shadow:0 6px 24px rgba(15,52,96,.3)}
+  .btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+  .progress-wrap{margin-bottom:1.5rem}
+  .progress-info{display:flex;justify-content:space-between;font-size:.75rem;color:var(--mid);margin-bottom:.4rem}
+  .progress-track{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+  .progress-fill{height:100%;background:var(--navy);border-radius:2px;transition:width .3s}
+  .results{display:none;margin-bottom:3rem}
+  .results.visible{display:block}
+  .results-hero{background:linear-gradient(135deg,var(--navy) 0%,#1a3a6e 100%);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;margin-bottom:1.25rem;box-shadow:var(--shadow-lg)}
+  .results-hero .eyebrow{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+  .results-hero h2{font-family:var(--serif);font-size:clamp(2rem,5vw,3rem);color:#fff;margin-bottom:.3rem;line-height:1.15}
+  .results-hero .stage-ask{font-size:.9rem;color:rgba(255,255,255,.65);font-style:italic;margin-bottom:1.5rem}
+  .score-bars{max-width:440px;margin:0 auto}
+  .bar-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.7rem}
+  .bar-label{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.8);width:100px;flex-shrink:0;text-align:right}
+  .bar-track{flex:1;height:8px;background:rgba(255,255,255,.15);border-radius:4px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:4px;transition:width .8s cubic-bezier(.4,0,.2,1)}
+  .bar-fill.to{background:var(--gold)}
+  .bar-fill.cr{background:#52c88a}
+  .bar-fill.aw{background:#ff9c5a}
+  .bar-pct{font-size:.75rem;color:rgba(255,255,255,.6);width:44px;text-align:left}
+  .result-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1rem;box-shadow:var(--shadow)}
+  .result-card-header{padding:1rem 1.5rem;display:flex;align-items:center;gap:.75rem}
+  .result-card-header h3{font-family:var(--serif);font-size:1.15rem;color:#fff;font-weight:500}
+  .result-card-header .tag{font-size:.68rem;color:rgba(255,255,255,.65);letter-spacing:.08em;text-transform:uppercase;margin-top:.1rem}
+  .result-card-header.to{background:var(--navy)}
+  .result-card-header.cr{background:var(--green)}
+  .result-card-header.aw{background:var(--amber)}
+  .result-card-body{padding:1.25rem 1.5rem}
+  .result-card-body p{font-size:.88rem;color:var(--mid);line-height:1.75;margin-bottom:.75rem}
+  .result-card-body p:last-child{margin-bottom:0}
+  .insert-note{background:#fdf8ee;border:1px solid #e6d2a8;border-left:4px solid var(--gold);border-radius:8px;padding:1.1rem 1.35rem;font-size:.88rem;color:#5c4a22;line-height:1.75;margin-bottom:1rem;display:none}
+  .insert-note strong{color:#7a5e1e}
+  .layer-insight{background:var(--navy-pale);border:1px solid var(--border);border-radius:8px;padding:.95rem 1.2rem;font-size:.86rem;color:var(--mid);line-height:1.7;margin:1rem 0 .25rem}
+  .layer-insight strong{color:var(--navy)}
+  .practices-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:.6rem;margin-top:1rem}
+  .practice{display:flex;gap:.6rem;margin-bottom:.5rem;align-items:flex-start}
+  .practice-num{width:22px;height:22px;border-radius:50%;background:var(--navy-light);color:var(--navy);font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+  .practice p{font-size:.87rem;color:var(--dark);margin:0;line-height:1.65}
+  .cta-card{background:var(--navy);border-radius:var(--radius);padding:2rem 2.25rem;text-align:center;margin-bottom:1rem;box-shadow:var(--shadow-lg)}
+  .cta-card h3{font-family:var(--serif);font-size:1.5rem;color:#fff;margin-bottom:.5rem}
+  .cta-card p{font-size:.88rem;color:rgba(255,255,255,.65);margin-bottom:1.25rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
+  .cta-buttons{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+  .btn-cta{padding:.75rem 1.75rem;border-radius:8px;font-family:var(--sans);font-size:.85rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none;display:inline-block;letter-spacing:.04em}
+  .btn-cta.gold{background:var(--gold);color:#fff;box-shadow:0 4px 14px rgba(201,146,42,.4)}
+  .btn-cta.gold:hover{background:#b07d20;transform:translateY(-1px)}
+  .btn-cta.outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+  .btn-cta.outline:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}
+  .btn-retake{background:none;border:none;cursor:pointer;font-size:.82rem;color:var(--mid);text-decoration:underline;margin-top:1rem;font-family:var(--sans)}
+  .btn-retake:hover{color:var(--navy)}
+  .btn-save{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:.65rem 1.5rem;border-radius:8px;font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.03em;cursor:pointer;transition:all .2s;margin-top:.5rem}
+  .btn-save:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.55);transform:translateY(-1px)}
+  .print-header{font-family:var(--serif);font-size:1.1rem;color:#fff;margin-bottom:.5rem}
+  .success-banner{background:#e8f5ee;border:1px solid #a8d8bc;border-radius:8px;padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;font-size:.88rem;color:#1a5c3a}
+  .validation-msg{background:#fff3ed;border:1px solid #f4a46a;border-radius:8px;padding:.85rem 1.25rem;font-size:.85rem;color:#8b3a00;margin-bottom:1rem;display:none}
+  .validation-msg.visible{display:block}
+  footer{background:var(--navy);color:rgba(255,255,255,.5);text-align:center;padding:2rem;font-size:.78rem;line-height:1.8}
+  footer strong{color:rgba(255,255,255,.8)}
+  .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:.4rem}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media print{
+    .site-header,.hero,.intro-card,.progress-wrap,.validation-msg,.success-banner,
+    .survey-form,.no-print,footer,.btn-retake{display:none !important}
+    body{background:#fff}
+    .wrap{max-width:100%;padding:0}
+    .results{display:block !important;margin-bottom:0}
+    .results-hero{background:#0f3460 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;box-shadow:none}
+    .print-header{display:block !important}
+    .result-card,.cta-card{box-shadow:none;break-inside:avoid}
+    .result-card-header,.result-card-header.to,.result-card-header.cr,.result-card-header.aw,.cta-card{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .cta-buttons{display:none}
+    .cta-card p{margin-bottom:.5rem}
+  }
+  @media (max-width:540px){
+    .info-grid{grid-template-columns:1fr}
+    .scale-row{flex-direction:column;align-items:flex-start;gap:.5rem}
+    .scale-options{gap:.25rem}
+    .scale-opt label{width:36px;height:36px;font-size:.78rem}
+    .site-header{padding:1rem}
+    .hero{padding:2.5rem 1.25rem 2rem}
+    .bar-label{width:80px;font-size:.72rem}
+    .cta-buttons{flex-direction:column}
+    .btn-cta{width:100%;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="index.html" style="text-decoration:none">Lead Through It<span>™</span></a>
+  <div class="header-tag">Leadership Transition Intelligence™</div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Liru Wang · PhD · ICF Master Certified Coach</div>
+  <h1>Which Leadership Transition<br><em>Stage Are You In?</em></h1>
+  <p class="hero-sub">An 18-statement self-assessment based on the LTQ framework from <em>Lead Through It: A Compass for Leadership Transition Intelligence</em></p>
+  <div class="hero-meta">
+    <span>18 statements</span><span>~6 minutes</span><span>Instant personalized results</span><span>Free</span>
+  </div>
+</section>
+
+<main>
+<div class="wrap">
+
+  <div class="intro-card">
+    <h2>About This Assessment</h2>
+    <p>This assessment is designed to help you identify where you currently are in your leadership transition journey — and what that position is asking of you.</p>
+    <p>This assessment shows where you are now, not what you are capable of. It maps the stage you are in and where the transition is pressing hardest. Your current and future capacity is what you build next, through reflection, coaching, and deliberate practice.</p>
+    <p>It contains <strong>18 statements</strong> grouped into three sections. Your responses across the three sections will identify your primary transition stage and the layer of your experience that is most activated right now.</p>
+    <p><strong>Instructions:</strong> Rate each statement from 1 (Not at all true) to 5 (Very much true) based on your experience over the <strong>last 60–90 days</strong>. Answer based on your genuine experience — there are no right or wrong answers.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-info"><span id="progress-text">0 of 18 answered</span><span id="progress-pct">0%</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+
+  <div class="validation-msg" id="val-msg">Please complete the required fields before submitting.</div>
+  <div class="success-banner" id="success-banner" style="display:none">
+    <span>✓</span><span>Your responses have been recorded. Scroll down to see your personalized results.</span>
+  </div>
+
+  <form class="survey-form" id="survey-form" novalidate>
+    <input type="hidden" name="_subject" value="New LTQ Self-Assessment Submission">
+
+    <div class="stage-section">
+      <div class="stage-header sec-a"><div class="stage-num">A</div><div class="stage-header-text"><h3>Section A</h3><p>Statements 1 – 6</p></div></div>
+      <div class="questions-list">
+        <div class="question" id="q1"><div class="q-row"><span class="q-num">1</span><span class="q-text">I frequently question whether I truly belong in my current role or at this level of leadership.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q1" id="q1_1" value="1"><label for="q1_1">1</label></div><div class="scale-opt"><input type="radio" name="q1" id="q1_2" value="2"><label for="q1_2">2</label></div><div class="scale-opt"><input type="radio" name="q1" id="q1_3" value="3"><label for="q1_3">3</label></div><div class="scale-opt"><input type="radio" name="q1" id="q1_4" value="4"><label for="q1_4">4</label></div><div class="scale-opt"><input type="radio" name="q1" id="q1_5" value="5"><label for="q1_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q2"><div class="q-row"><span class="q-num">2</span><span class="q-text">I still rely primarily on the skills and expertise that earned me this role, rather than developing the new ones this level requires.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q2" id="q2_1" value="1"><label for="q2_1">1</label></div><div class="scale-opt"><input type="radio" name="q2" id="q2_2" value="2"><label for="q2_2">2</label></div><div class="scale-opt"><input type="radio" name="q2" id="q2_3" value="3"><label for="q2_3">3</label></div><div class="scale-opt"><input type="radio" name="q2" id="q2_4" value="4"><label for="q2_4">4</label></div><div class="scale-opt"><input type="radio" name="q2" id="q2_5" value="5"><label for="q2_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q3"><div class="q-row"><span class="q-num">3</span><span class="q-text">Building trust with my team and key stakeholders feels like active, ongoing — sometimes uncertain — work.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q3" id="q3_1" value="1"><label for="q3_1">1</label></div><div class="scale-opt"><input type="radio" name="q3" id="q3_2" value="2"><label for="q3_2">2</label></div><div class="scale-opt"><input type="radio" name="q3" id="q3_3" value="3"><label for="q3_3">3</label></div><div class="scale-opt"><input type="radio" name="q3" id="q3_4" value="4"><label for="q3_4">4</label></div><div class="scale-opt"><input type="radio" name="q3" id="q3_5" value="5"><label for="q3_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q4"><div class="q-row"><span class="q-num">4</span><span class="q-text">I am navigating the complexity of relationships that shifted when my role changed — former peers, new direct reports, or people who wanted this role.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q4" id="q4_1" value="1"><label for="q4_1">1</label></div><div class="scale-opt"><input type="radio" name="q4" id="q4_2" value="2"><label for="q4_2">2</label></div><div class="scale-opt"><input type="radio" name="q4" id="q4_3" value="3"><label for="q4_3">3</label></div><div class="scale-opt"><input type="radio" name="q4" id="q4_4" value="4"><label for="q4_4">4</label></div><div class="scale-opt"><input type="radio" name="q4" id="q4_5" value="5"><label for="q4_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q5"><div class="q-row"><span class="q-num">5</span><span class="q-text">I am actively working to understand the informal rules and unwritten expectations of my current context.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q5" id="q5_1" value="1"><label for="q5_1">1</label></div><div class="scale-opt"><input type="radio" name="q5" id="q5_2" value="2"><label for="q5_2">2</label></div><div class="scale-opt"><input type="radio" name="q5" id="q5_3" value="3"><label for="q5_3">3</label></div><div class="scale-opt"><input type="radio" name="q5" id="q5_4" value="4"><label for="q5_4">4</label></div><div class="scale-opt"><input type="radio" name="q5" id="q5_5" value="5"><label for="q5_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q6"><div class="q-row"><span class="q-num">6</span><span class="q-text">I am working harder than before this transition, but I am not always sure my effort is focused where it matters most.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q6" id="q6_1" value="1"><label for="q6_1">1</label></div><div class="scale-opt"><input type="radio" name="q6" id="q6_2" value="2"><label for="q6_2">2</label></div><div class="scale-opt"><input type="radio" name="q6" id="q6_3" value="3"><label for="q6_3">3</label></div><div class="scale-opt"><input type="radio" name="q6" id="q6_4" value="4"><label for="q6_4">4</label></div><div class="scale-opt"><input type="radio" name="q6" id="q6_5" value="5"><label for="q6_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-section">
+      <div class="stage-header sec-b"><div class="stage-num">B</div><div class="stage-header-text"><h3>Section B</h3><p>Statements 7 – 12</p></div></div>
+      <div class="questions-list">
+        <div class="question" id="q7"><div class="q-row"><span class="q-num">7</span><span class="q-text">I am competent and effective in my role, but something quietly important feels missing.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q7" id="q7_1" value="1"><label for="q7_1">1</label></div><div class="scale-opt"><input type="radio" name="q7" id="q7_2" value="2"><label for="q7_2">2</label></div><div class="scale-opt"><input type="radio" name="q7" id="q7_3" value="3"><label for="q7_3">3</label></div><div class="scale-opt"><input type="radio" name="q7" id="q7_4" value="4"><label for="q7_4">4</label></div><div class="scale-opt"><input type="radio" name="q7" id="q7_5" value="5"><label for="q7_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q8"><div class="q-row"><span class="q-num">8</span><span class="q-text">External success — results, recognition, titles — no longer provides the same sense of satisfaction it once did.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q8" id="q8_1" value="1"><label for="q8_1">1</label></div><div class="scale-opt"><input type="radio" name="q8" id="q8_2" value="2"><label for="q8_2">2</label></div><div class="scale-opt"><input type="radio" name="q8" id="q8_3" value="3"><label for="q8_3">3</label></div><div class="scale-opt"><input type="radio" name="q8" id="q8_4" value="4"><label for="q8_4">4</label></div><div class="scale-opt"><input type="radio" name="q8" id="q8_5" value="5"><label for="q8_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q9"><div class="q-row"><span class="q-num">9</span><span class="q-text">My relationships at work function well, but I wonder if they have the depth and honesty they once did.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q9" id="q9_1" value="1"><label for="q9_1">1</label></div><div class="scale-opt"><input type="radio" name="q9" id="q9_2" value="2"><label for="q9_2">2</label></div><div class="scale-opt"><input type="radio" name="q9" id="q9_3" value="3"><label for="q9_3">3</label></div><div class="scale-opt"><input type="radio" name="q9" id="q9_4" value="4"><label for="q9_4">4</label></div><div class="scale-opt"><input type="radio" name="q9" id="q9_5" value="5"><label for="q9_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q10"><div class="q-row"><span class="q-num">10</span><span class="q-text">I feel competent but not deeply energized — by the work itself or by the people I do it with.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q10" id="q10_1" value="1"><label for="q10_1">1</label></div><div class="scale-opt"><input type="radio" name="q10" id="q10_2" value="2"><label for="q10_2">2</label></div><div class="scale-opt"><input type="radio" name="q10" id="q10_3" value="3"><label for="q10_3">3</label></div><div class="scale-opt"><input type="radio" name="q10" id="q10_4" value="4"><label for="q10_4">4</label></div><div class="scale-opt"><input type="radio" name="q10" id="q10_5" value="5"><label for="q10_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q11"><div class="q-row"><span class="q-num">11</span><span class="q-text">I am beginning to sense that the contribution I want to make has grown beyond what my current role is structured to support.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q11" id="q11_1" value="1"><label for="q11_1">1</label></div><div class="scale-opt"><input type="radio" name="q11" id="q11_2" value="2"><label for="q11_2">2</label></div><div class="scale-opt"><input type="radio" name="q11" id="q11_3" value="3"><label for="q11_3">3</label></div><div class="scale-opt"><input type="radio" name="q11" id="q11_4" value="4"><label for="q11_4">4</label></div><div class="scale-opt"><input type="radio" name="q11" id="q11_5" value="5"><label for="q11_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q12"><div class="q-row"><span class="q-num">12</span><span class="q-text">I wonder whether my current role is still as strategically relevant to the organization as it once was.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q12" id="q12_1" value="1"><label for="q12_1">1</label></div><div class="scale-opt"><input type="radio" name="q12" id="q12_2" value="2"><label for="q12_2">2</label></div><div class="scale-opt"><input type="radio" name="q12" id="q12_3" value="3"><label for="q12_3">3</label></div><div class="scale-opt"><input type="radio" name="q12" id="q12_4" value="4"><label for="q12_4">4</label></div><div class="scale-opt"><input type="radio" name="q12" id="q12_5" value="5"><label for="q12_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-section">
+      <div class="stage-header sec-c"><div class="stage-num">C</div><div class="stage-header-text"><h3>Section C</h3><p>Statements 13 – 18</p></div></div>
+      <div class="questions-list">
+        <div class="question" id="q13"><div class="q-row"><span class="q-num">13</span><span class="q-text">I am asking deeper questions about my purpose and direction than I have at any previous point in my career.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q13" id="q13_1" value="1"><label for="q13_1">1</label></div><div class="scale-opt"><input type="radio" name="q13" id="q13_2" value="2"><label for="q13_2">2</label></div><div class="scale-opt"><input type="radio" name="q13" id="q13_3" value="3"><label for="q13_3">3</label></div><div class="scale-opt"><input type="radio" name="q13" id="q13_4" value="4"><label for="q13_4">4</label></div><div class="scale-opt"><input type="radio" name="q13" id="q13_5" value="5"><label for="q13_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q14"><div class="q-row"><span class="q-num">14</span><span class="q-text">I notice a gap between the version of myself I present professionally and the person I sense I am becoming.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q14" id="q14_1" value="1"><label for="q14_1">1</label></div><div class="scale-opt"><input type="radio" name="q14" id="q14_2" value="2"><label for="q14_2">2</label></div><div class="scale-opt"><input type="radio" name="q14" id="q14_3" value="3"><label for="q14_3">3</label></div><div class="scale-opt"><input type="radio" name="q14" id="q14_4" value="4"><label for="q14_4">4</label></div><div class="scale-opt"><input type="radio" name="q14" id="q14_5" value="5"><label for="q14_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q15"><div class="q-row"><span class="q-num">15</span><span class="q-text">I feel drawn to exploring who I want to be in the next chapter — not just what I want to do — and this is shaping how I lead others.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q15" id="q15_1" value="1"><label for="q15_1">1</label></div><div class="scale-opt"><input type="radio" name="q15" id="q15_2" value="2"><label for="q15_2">2</label></div><div class="scale-opt"><input type="radio" name="q15" id="q15_3" value="3"><label for="q15_3">3</label></div><div class="scale-opt"><input type="radio" name="q15" id="q15_4" value="4"><label for="q15_4">4</label></div><div class="scale-opt"><input type="radio" name="q15" id="q15_5" value="5"><label for="q15_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q16"><div class="q-row"><span class="q-num">16</span><span class="q-text">I find myself more interested in developing the people around me than in advancing my own position.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q16" id="q16_1" value="1"><label for="q16_1">1</label></div><div class="scale-opt"><input type="radio" name="q16" id="q16_2" value="2"><label for="q16_2">2</label></div><div class="scale-opt"><input type="radio" name="q16" id="q16_3" value="3"><label for="q16_3">3</label></div><div class="scale-opt"><input type="radio" name="q16" id="q16_4" value="4"><label for="q16_4">4</label></div><div class="scale-opt"><input type="radio" name="q16" id="q16_5" value="5"><label for="q16_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q17"><div class="q-row"><span class="q-num">17</span><span class="q-text">I feel drawn to a different kind of contribution or impact than the one my current role allows.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q17" id="q17_1" value="1"><label for="q17_1">1</label></div><div class="scale-opt"><input type="radio" name="q17" id="q17_2" value="2"><label for="q17_2">2</label></div><div class="scale-opt"><input type="radio" name="q17" id="q17_3" value="3"><label for="q17_3">3</label></div><div class="scale-opt"><input type="radio" name="q17" id="q17_4" value="4"><label for="q17_4">4</label></div><div class="scale-opt"><input type="radio" name="q17" id="q17_5" value="5"><label for="q17_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+        <div class="question" id="q18"><div class="q-row"><span class="q-num">18</span><span class="q-text">Something is completing in my current chapter, even if I cannot yet name what comes next.</span></div>
+          <div class="scale-row"><span class="scale-label">Not at all</span><div class="scale-options"><div class="scale-opt"><input type="radio" name="q18" id="q18_1" value="1"><label for="q18_1">1</label></div><div class="scale-opt"><input type="radio" name="q18" id="q18_2" value="2"><label for="q18_2">2</label></div><div class="scale-opt"><input type="radio" name="q18" id="q18_3" value="3"><label for="q18_3">3</label></div><div class="scale-opt"><input type="radio" name="q18" id="q18_4" value="4"><label for="q18_4">4</label></div><div class="scale-opt"><input type="radio" name="q18" id="q18_5" value="5"><label for="q18_5">5</label></div></div><span class="scale-label right">Very much</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="field"><label for="f-name">First name</label><input type="text" id="f-name" name="name" placeholder="Your first name"></div>
+      <div class="field"><label for="f-email">Email <span class="req">(required to see your results)</span></label><input type="email" id="f-email" name="email" placeholder="your@email.com" required></div>
+    </div>
+
+    <div class="submit-area">
+      <p><strong>Your result is ready.</strong> Tell us where to send it and we will show it now — plus a copy for later.<br>Once you submit, your personalized results will appear below — showing your primary stage, score breakdown, what this stage is asking of you, and three practices for right now.</p>
+      <button type="submit" class="btn-submit" id="btn-submit">See My Results →</button>
+    </div>
+
+  </form>
+
+  <div class="results" id="results">
+
+    <div class="results-hero" id="results-hero">
+      <div class="print-header" style="display:none"></div>
+      <div class="eyebrow">Your LTQ Self-Assessment Results</div>
+      <h2 id="r-stage-name">—</h2>
+      <p class="stage-ask" id="r-stage-ask">—</p>
+      <div class="score-bars">
+        <div class="bar-row"><div class="bar-label">Taking-Off</div><div class="bar-track"><div class="bar-fill to" id="bar-to" style="width:0%"></div></div><div class="bar-pct" id="pct-to">0/30</div></div>
+        <div class="bar-row"><div class="bar-label">Cruising</div><div class="bar-track"><div class="bar-fill cr" id="bar-cr" style="width:0%"></div></div><div class="bar-pct" id="pct-cr">0/30</div></div>
+        <div class="bar-row"><div class="bar-label">Awakening</div><div class="bar-track"><div class="bar-fill aw" id="bar-aw" style="width:0%"></div></div><div class="bar-pct" id="pct-aw">0/30</div></div>
+      </div>
+      <button class="btn-save no-print" onclick="window.print()">⬇ Save / Print My Results</button>
+    </div>
+
+    <div class="insert-note" id="insert-note"></div>
+
+    <div class="result-card" id="result-detail">
+      <div class="result-card-header" id="r-card-header">
+        <div><h3 id="r-card-title">—</h3><div class="tag" id="r-card-tag">—</div></div>
+      </div>
+      <div class="result-card-body">
+        <p id="r-desc">—</p>
+        <p id="r-insight" style="font-style:italic;border-left:3px solid #dde4ee;padding-left:.75rem;color:#333;"></p>
+        <div class="layer-insight" id="r-layer"></div>
+        <div id="practices-block">
+          <div class="practices-label">Three Practices For Right Now</div>
+          <div class="practice"><div class="practice-num">1</div><p id="r-p1">—</p></div>
+          <div class="practice"><div class="practice-num">2</div><p id="r-p2">—</p></div>
+          <div class="practice"><div class="practice-num">3</div><p id="r-p3">—</p></div>
+        </div>
+        <p id="r-closing" style="display:none;font-weight:500;color:var(--navy)"></p>
+      </div>
+    </div>
+
+    <div class="cta-card">
+      <h3>Ready to Go Deeper?</h3>
+      <p>This assessment is drawn from the LTQ framework in <em>Lead Through It: A Compass for Leadership Transition Intelligence</em> by Liru Wang, PhD, ICF Master Certified Coach. Your stage is the beginning of the map — not the end of it.</p>
+      <div class="cta-buttons">
+        <!-- BOOK LINK: replace this span with <a href="AMAZON_URL" class="btn-cta gold">Find the Book →</a> --><span class="btn-cta gold" style="opacity:.6;cursor:default">Book Coming Soon</span>
+        <a href="connect.html" class="btn-cta outline">Book a Discovery Conversation →</a>
+      </div>
+    </div>
+
+    <div style="text-align:center"><button class="btn-retake" onclick="retake()">Retake the assessment</button></div>
+
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <strong>Lead Through It™ · Leadership Transition Intelligence™</strong><br>
+  Liru Wang, PhD, ICF Master Certified Coach<br>
+  1:1 Coaching · Group Programs · Workshops · Keynote Speaking · Facilitation<br>
+  <a href="index.html" style="color:rgba(255,255,255,.5)">leadershiptransitionintelligence.com</a> &middot; <a href="https://www.linkedin.com/in/liruwang/" style="color:rgba(255,255,255,.5)" target="_blank">LinkedIn</a><br><br>
+  © 2026 Liru Wang. All rights reserved.
+</footer>
+
+<script>
+const SUBMIT_URL = "https://formspree.io/f/mlgvvwpq";
+
+const FLOOR = 18, BAND = 4;
+const PRECEDENCE = ['aw','cr','to'];
+
+const stages = {
+  to: {
+    name: "Taking-Off",
+    ask: "This stage asks for courage.",
+    headerClass: "to",
+    desc: "You are in the first stage of Leadership Transition Intelligence — the stage of destabilization and positioning. You are navigating new terrain with incomplete information, a self-concept still catching up to the new altitude, and the constant pressure to prove yourself while learning to lead at this level. The Me, We, and The World layers are all simultaneously in motion.",
+    insight: "Move from asking “How do I prove myself here?” to “Who is this role asking me to become?” Proving requires an audience. Discovering builds a foundation.",
+    p1: "Set one learning goal alongside your performance goals this quarter: What do you need to understand about how decisions are actually made in your context?",
+    p2: "Find an inside guide — someone lateral or slightly senior who will answer the questions you are afraid to ask in meetings.",
+    p3: "Name your old success script (the Fixer? the Expert? the High Performer?) and begin deliberately inhabiting the identity this new level actually requires."
+  },
+  cr: {
+    name: "Cruising",
+    ask: "This stage asks for reflection.",
+    headerClass: "cr",
+    desc: "You are in the second stage — the stage of competence and the quiet signal. You know the system, the people, and how to succeed. And quietly, something feels like it is no longer quite enough. This is not ingratitude. It is your developing self trying to initiate an important conversation about meaning, depth, and direction.",
+    insight: "The question Cruising is actually asking is not “What should I do next?” It is “Is this still aligned with who I am becoming?” Only the second question leads somewhere genuinely meaningful.",
+    p1: "Start a monthly energy audit: What energized me this month? What drained me? What patterns do I notice across both answers?",
+    p2: "Have the honest conversation you have been avoiding — with a team member, a peer, or yourself about the direction you are heading.",
+    p3: "Examine your network: does it reflect who you were when you built it, or who you are becoming?"
+  },
+  aw: {
+    name: "Awakening",
+    ask: "This stage asks for truth.",
+    headerClass: "aw",
+    desc: "You are in the third stage — the stage of meaning and reinvention. The transition has turned inward. The question has shifted from what to do next to who you are becoming. This is not a midlife crisis or a sign that something is wrong. It is the mark of a leader whose depth of development has finally caught up to the surface of their performance.",
+    insight: "Awakening does not ask for a dramatic decision. It asks for the willingness to hold the question “Who am I becoming — and is that who I choose to be?” long enough to let an honest answer surface.",
+    p1: "Practice the Leadership Pause: stop, get curious, make sense of what is emerging, and take one small step in the direction of what feels most true.",
+    p2: "Design a small experiment — a conversation, a project, a different way of leading in one relationship — to test the direction you are sensing.",
+    p3: "Ask the defining Awakening question and hold it with patience: Who am I becoming — and is that who I choose to be?"
+  }
+};
+
+const between = {
+  name: "Between Transitions",
+  ask: "No single stage is strongly active for you right now.",
+  headerClass: "to",
+  desc: "That may mean you are in a period of genuine stability between transitions — which is worth recognizing rather than rushing past. It may also mean a new Taking-Off has begun but has not yet fully registered.",
+  insight: "Stability is not the same as stagnation. The leaders who use these periods well treat them as preparation rather than pause: consolidating what the last transition taught them, and staying alert to the first signals of the next.",
+  closing: "Revisit this assessment in four to six weeks. If a stage is emerging, it will show."
+};
+
+const LAYERS = {
+  me:    { label: "Me",        text: "the work right now is about identity: who you are, what you value, and what you may need to release." },
+  we:    { label: "We",        text: "the work right now is relational: trust, depth, and the people whose sense of you has shifted." },
+  world: { label: "The World", text: "the work right now is contextual: visibility, systems, and how you are read by the environment you lead in." }
+};
+
+const INSERTS = {
+  A: (p, sec) => "<strong>You are between two stages.</strong> Your " + stages[sec].name +
+       " score is within four points of your " + stages[p].name + " score, which means you are moving between them. " +
+       "That is not an unclear result — it is a specific one. The space between chapters has its own intelligence, and it is often where the most important work happens. " +
+       "Read the " + stages[p].name + " guidance first, then the " + stages[sec].name + " chapter in the book.",
+  B: () => "<strong>Your two strongest stages are Taking-Off and Awakening.</strong> This is the signature of the upward spiral: a new chapter beginning at a higher altitude while deeper questions about direction are still live. " +
+       "You are building and questioning at the same time. Demanding — and often the most generative position in a leadership life.",
+  C: () => "<strong>All three stages are strongly active for you.</strong> This usually means a great deal is in motion at once — new terrain in one part of your role, quiet restlessness in another, and deeper questions running underneath both. " +
+       "Start with your highest score, but do not expect a single stage to explain everything you are experiencing right now."
+};
+
+function updateProgress() {
+  let count = 0;
+  for (let i = 1; i <= 18; i++) {
+    if (document.querySelector(`input[name="q${i}"]:checked`)) count++;
+  }
+  const pct = Math.round(count / 18 * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `${count} of 18 answered`;
+  document.getElementById('progress-pct').textContent = pct + '%';
+}
+
+document.querySelectorAll('input[type="radio"]').forEach(r => {
+  r.addEventListener('change', () => {
+    updateProgress();
+    document.getElementById(r.name)?.classList.remove('unanswered');
+  });
+});
+
+function getScores() {
+  const v = i => { const el = document.querySelector(`input[name="q${i}"]:checked`); return el ? parseInt(el.value) : 0; };
+  const layers = {
+    to: { me: v(1)+v(2),   we: v(3)+v(4),   world: v(5)+v(6)   },
+    cr: { me: v(7)+v(8),   we: v(9)+v(10),  world: v(11)+v(12) },
+    aw: { me: v(13)+v(14), we: v(15)+v(16), world: v(17)+v(18) }
+  };
+  const sum = o => o.me + o.we + o.world;
+  return { to: sum(layers.to), cr: sum(layers.cr), aw: sum(layers.aw), layers };
+}
+
+// Rule 1 (floor) is evaluated before Rule 2 (highest score). Order matters.
+function classify(s) {
+  if (s.to < FLOOR && s.cr < FLOOR && s.aw < FLOOR) return { kind: 'between' };
+  const max = Math.max(s.to, s.cr, s.aw);
+  const primary = PRECEDENCE.find(k => s[k] === max);            // ties: Awakening > Cruising > Taking-Off
+  const secondary = PRECEDENCE.filter(k => k !== primary && (max - s[k]) <= BAND);
+  let insert = null;
+  if (secondary.length === 2) insert = 'C';
+  else if (secondary.length === 1) {
+    const pair = [primary, secondary[0]].sort().join('|');
+    insert = (pair === 'aw|to') ? 'B' : 'A';
+  }
+  return { kind: 'stage', primary, secondary, insert };
+}
+
+function layerInsight(sub) {
+  const max = Math.max(sub.me, sub.we, sub.world);
+  const top = ['me','we','world'].filter(k => sub[k] === max);
+  if (top.length === 3) {
+    return "<strong>Your three layers are evenly weighted right now.</strong> That is uncommon \u2014 most profiles are uneven, " +
+           "and the gap between layers is usually where the information is. An even profile can mean the work is genuinely spread " +
+           "across all three, or that no single layer has yet declared itself. Revisit it as the transition develops.";
+  }
+  if (top.length === 1) {
+    return "<strong>Your most activated layer is " + LAYERS[top[0]].label + "</strong> \u2014 " + LAYERS[top[0]].text;
+  }
+  const names = top.map(k => LAYERS[k].label).join(' and ');
+  const body  = top.map(k => "<strong>" + LAYERS[k].label + "</strong> \u2014 " + LAYERS[k].text).join('<br>');
+  return "<strong>Two layers are equally activated: " + names + ".</strong><br>" + body;
+}
+
+function mostActivatedLayer(sub) {
+  const max = Math.max(sub.me, sub.we, sub.world);
+  return ['me','we','world'].filter(k => sub[k] === max).map(k => LAYERS[k].label).join(' + ');
+}
+
+function setText(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
+function setHTML(id, v) { const el = document.getElementById(id); if (el) el.innerHTML = v; }
+
+function showResults(scores, verdict) {
+  const isBetween = verdict.kind === 'between';
+  const s = isBetween ? between : stages[verdict.primary];
+  const max = 30;
+
+  setText('r-stage-name', s.name);
+  setText('r-stage-ask', s.ask);
+
+  const nameVal = document.getElementById('f-name').value.trim();
+  const dateStr = new Date().toLocaleDateString('en-CA', { year:'numeric', month:'long', day:'numeric' });
+  document.querySelector('.print-header').textContent =
+    'Lead Through It\u2122 \u2014 LTQ Self-Assessment' + (nameVal ? '  \u00b7  ' + nameVal : '') + '  \u00b7  ' + dateStr;
+
+  setTimeout(() => {
+    document.getElementById('bar-to').style.width = (scores.to / max * 100) + '%';
+    document.getElementById('bar-cr').style.width = (scores.cr / max * 100) + '%';
+    document.getElementById('bar-aw').style.width = (scores.aw / max * 100) + '%';
+    setText('pct-to', scores.to + '/30');
+    setText('pct-cr', scores.cr + '/30');
+    setText('pct-aw', scores.aw + '/30');
+  }, 100);
+
+  // conditional insert, above the primary guidance
+  const ins = document.getElementById('insert-note');
+  if (!isBetween && verdict.insert) {
+    const fn = INSERTS[verdict.insert];
+    ins.innerHTML = (verdict.insert === 'A') ? fn(verdict.primary, verdict.secondary[0]) : fn();
+    ins.style.display = 'block';
+  } else { ins.style.display = 'none'; }
+
+  const hdr = document.getElementById('r-card-header');
+  hdr.className = 'result-card-header ' + s.headerClass;
+  setText('r-card-title', s.name);
+  setText('r-card-tag', isBetween ? 'What this means' : s.ask);
+
+  setText('r-desc', s.desc);
+  setText('r-insight', s.insight);
+
+  // layer insight belongs to a primary stage; Between Transitions has none
+  const lay = document.getElementById('r-layer');
+  if (!isBetween) {
+    lay.innerHTML = layerInsight(scores.layers[verdict.primary]);
+    lay.style.display = 'block';
+  } else { lay.style.display = 'none'; }
+
+  const pracs = document.getElementById('practices-block');
+  const close = document.getElementById('r-closing');
+  if (isBetween) {
+    pracs.style.display = 'none';
+    close.textContent = s.closing; close.style.display = 'block';
+  } else {
+    pracs.style.display = 'block';
+    close.style.display = 'none';
+    setText('r-p1', s.p1); setText('r-p2', s.p2); setText('r-p3', s.p3);
+  }
+
+  const resultsEl = document.getElementById('results');
+  resultsEl.classList.add('visible');
+  setTimeout(() => resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+}
+
+document.getElementById('survey-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const emailVal = document.getElementById('f-email').value.trim();
+  if (!emailVal) {
+    document.getElementById('f-email').focus();
+    document.getElementById('f-email').style.borderColor = '#c04a00';
+    document.getElementById('f-email').style.boxShadow = '0 0 0 3px rgba(192,74,0,.15)';
+    document.getElementById('val-msg').textContent = 'Please enter your email address — it is required to receive your personalized results.';
+    document.getElementById('val-msg').classList.add('visible');
+    document.getElementById('f-email').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  document.getElementById('f-email').style.borderColor = '';
+  document.getElementById('f-email').style.boxShadow = '';
+
+  let missing = [];
+  for (let i = 1; i <= 18; i++) {
+    if (!document.querySelector(`input[name="q${i}"]:checked`)) {
+      missing.push(i);
+      document.getElementById(`q${i}`)?.classList.add('unanswered');
+    }
+  }
+  if (missing.length > 0) {
+    const msg = document.getElementById('val-msg');
+    msg.textContent = 'Please answer all 18 statements before submitting. Unanswered items are highlighted below.';
+    msg.classList.add('visible');
+    document.getElementById(`q${missing[0]}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  document.getElementById('val-msg').classList.remove('visible');
+
+  const scores = getScores();
+  const verdict = classify(scores);
+  const resultLabel = verdict.kind === 'between' ? between.name : stages[verdict.primary].name;
+  const formData = new FormData(this);
+
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Calculating…';
+
+  try {
+    const payload = {
+      name:             formData.get('name')         || 'Not provided',
+      email:            emailVal,
+      taking_off_score: scores.to + ' / 30',
+      cruising_score:   scores.cr + ' / 30',
+      awakening_score:  scores.aw + ' / 30',
+      primary_stage:    resultLabel,
+      secondary_stage:  verdict.kind === 'stage' && verdict.secondary.length
+                          ? verdict.secondary.map(k => stages[k].name).join(', ') : 'None',
+      conditional_insert: verdict.kind === 'stage' && verdict.insert ? 'Insert ' + verdict.insert : 'None',
+      activated_layer:  verdict.kind === 'stage' ? mostActivatedLayer(scores.layers[verdict.primary]) : 'n/a',
+      submitted_at:     new Date().toLocaleString('en-CA', { timeZone: 'America/Edmonton' }),
+      _subject:  'LTQ Assessment · ' + resultLabel + ' · ' + (formData.get('name') || 'Anonymous'),
+      _template: 'table',
+      _replyto:  emailVal
+    };
+    const fd = new FormData();
+    Object.entries(payload).forEach(([k, v]) => fd.append(k, v));
+    const res = await fetch(SUBMIT_URL, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+    if (res.ok) document.getElementById('success-banner').style.display = 'flex';
+  } catch(err) { /* fail silently — results still show */ }
+
+  btn.innerHTML = 'Submitted ✓';
+  showResults(scores, verdict);
+});
+
+function retake() {
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  document.querySelectorAll('.question').forEach(q => q.classList.remove('unanswered'));
+  document.getElementById('results').classList.remove('visible');
+  document.getElementById('success-banner').style.display = 'none';
+  document.getElementById('val-msg').classList.remove('visible');
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = false;
+  btn.textContent = 'See My Results →';
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
