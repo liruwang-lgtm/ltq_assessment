@@ -248,3 +248,52 @@ footer nav{display:flex;flex-direction:column;gap:.3rem}
   .hero-portrait{max-width:260px}
   .intro-photo{float:none;display:block;width:160px;height:160px;margin:0 0 1.2rem}
 }
+
+/* ---------- stage + layer cards: larger, easier to read ---------- */
+.stage,.layer{padding:1.6rem 1.6rem 1.5rem}
+.stage h3{font-family:var(--sans);font-size:1.45rem;font-weight:600;letter-spacing:-.005em;margin-bottom:.25rem}
+.stage .asks{font-size:.82rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--soft);margin-bottom:.9rem}
+.stage p,.layer p{font-size:1.06rem;font-weight:400;line-height:1.6;color:#33334a}
+.stage .q{font-size:1.06rem;font-weight:500;color:var(--navy)}
+.layer h3{font-family:var(--sans);font-size:1.3rem;font-weight:600;color:var(--navy);margin-bottom:.4rem}
+
+/* ---------- readability: regular weight, darker text site-wide ---------- */
+:root{--mid:#33334a;--soft:#585869}
+body{font-weight:400}
+p{font-size:1.05rem}
+.hero .sub{font-weight:400;font-size:1.15rem;color:rgba(255,255,255,.88)}
+.hero p{color:rgba(255,255,255,.82)}
+.band-navy p{color:rgba(255,255,255,.86)}
+ul.plain li,ul.creds li{font-size:1.02rem}
+input,textarea,select{font-weight:400}
+
+/* ---------- larger header ---------- */
+.header-inner{padding:1.05rem 1.25rem}
+.wordmark{font-size:1.65rem}
+nav.main{gap:1.7rem}
+nav.main a{font-size:1.02rem;font-weight:500}
+nav.main a.nav-cta{font-size:1rem;padding:.6rem 1.2rem}
+
+/* ---------- homepage hero ---------- */
+.hero h1.h1-oneline{max-width:none;font-size:clamp(2.2rem,5.4vw,3.9rem);margin-bottom:1.6rem}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:3.5rem;align-items:center}
+.hero-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-radius:14px;padding:1.5rem 1.5rem 1.2rem;backdrop-filter:blur(2px)}
+.hc-label{font-size:.8rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem}
+.hc-stage{display:grid;grid-template-columns:auto 1fr;column-gap:.8rem;align-items:baseline;
+  text-decoration:none;padding:.85rem 0 .85rem 1rem;border-left:4px solid var(--c);
+  margin-bottom:.7rem;background:rgba(255,255,255,.04);border-radius:0 8px 8px 0;transition:background .15s}
+.hc-stage:hover{background:rgba(255,255,255,.1)}
+.hc-name{font-size:1.2rem;font-weight:600;color:#fff}
+.hc-asks{font-size:.74rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hc-q{grid-column:1/-1;font-style:italic;color:rgba(255,255,255,.85);font-size:1rem;margin-top:.2rem;padding-right:1rem}
+.hc-foot{font-size:.85rem;color:rgba(255,255,255,.6);margin-top:.9rem;text-align:center;letter-spacing:.02em}
+@media (min-width:900px){.hero h1.h1-oneline{white-space:nowrap}}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:2.2rem}
+  .wordmark{font-size:1.45rem}
+  nav.main{gap:1.1rem}
+  nav.main a{font-size:.95rem}
+}
+@media (max-width:560px){nav.main{gap:.55rem 1rem}nav.main a{font-size:.92rem}nav.main a.nav-cta{font-size:.92rem;padding:.5rem .95rem}}
