@@ -326,3 +326,10 @@ nav.main a.nav-cta{font-size:1rem;padding:.6rem 1.2rem}
 /* ---------- LTQ definition: larger, term highlighted ---------- */
 .definition{font-size:1.32rem;line-height:1.55;padding:.4rem 0 .4rem 1.3rem;border-left-width:4px;margin:1.2rem 0 1.6rem;max-width:none}
 .def-term{font-weight:600;color:var(--navy);background:linear-gradient(transparent 62%,rgba(201,146,42,.32) 62%);padding:0 .1em}
+
+/* ---------- phones/tablets: stack hero, card full width (must stay last) ---------- */
+@media (max-width:900px){
+  .hero-grid,.hero-grid-fw{grid-template-columns:1fr;gap:2rem}
+  .hero-card{justify-self:stretch;max-width:none}
+  .hc-stage{grid-template-columns:auto minmax(0,1fr)}
+}
