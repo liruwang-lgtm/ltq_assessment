@@ -74,6 +74,10 @@
   .question.unanswered .q-text{color:#c04a00}
   .submit-area{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem 2rem;text-align:center;box-shadow:var(--shadow);margin-bottom:1.5rem}
   .submit-area p{font-size:.85rem;color:var(--mid);margin-bottom:1.25rem}
+  .consent{grid-column:1/-1;display:flex;gap:.65rem;align-items:flex-start;margin-top:.5rem;font-size:.85rem;color:var(--mid);line-height:1.5}
+  .consent input{margin-top:.2rem;width:1.05rem;height:1.05rem;flex:none;accent-color:var(--navy)}
+  .submit-area .privacy-note{font-size:.78rem;margin:1rem 0 0}
+  .submit-area .privacy-note a{color:var(--navy)}
   .btn-submit{background:var(--navy);color:#fff;border:none;padding:.9rem 3rem;font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-radius:8px;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 16px rgba(15,52,96,.25)}
   .btn-submit:hover{background:var(--navy-mid);transform:translateY(-1px);box-shadow:0 6px 24px rgba(15,52,96,.3)}
   .btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
@@ -285,11 +289,16 @@
     <div class="info-grid">
       <div class="field"><label for="f-name">First name</label><input type="text" id="f-name" name="name" placeholder="Your first name"></div>
       <div class="field"><label for="f-email">Email <span class="req">(required to see your results)</span></label><input type="email" id="f-email" name="email" placeholder="your@email.com" required></div>
+      <label class="consent" for="f-optin"><input type="checkbox" id="f-optin" name="list_opt_in" value="yes">
+        <span>Also send me Chapter One of <em>Lead Through It</em>, news when the book is out, and occasional
+        notes on leading through transition. You&rsquo;ll get one email to confirm, and you can unsubscribe anytime.</span></label>
     </div>
 
     <div class="submit-area">
-      <p><strong>Your result is ready.</strong> Tell us where to send it and we will show it now — plus a copy for later.<br>Once you submit, your personalized results will appear below — showing your primary stage, score breakdown, what this stage is asking of you, and three practices for right now.</p>
+      <p><strong>Your result is ready.</strong> Once you submit, it appears below right away: your primary stage, your score breakdown, what this stage is asking of you, and three practices for right now. To keep a copy, use Save / Print on the results.</p>
+      <p>Your answers and result also come to me, Liru, so I can talk them through with you if you get in touch. Submitting does not add you to any mailing list.</p>
       <button type="submit" class="btn-submit" id="btn-submit">See My Results →</button>
+      <p class="privacy-note">How I handle your information: <a href="privacy.html">Privacy</a></p>
     </div>
 
   </form>
@@ -351,7 +360,7 @@
   <strong>Lead Through It™ · Leadership Transition Intelligence™</strong><br>
   Liru Wang, PhD, ICF Master Certified Coach<br>
   1:1 Coaching · Group Programs · Workshops · Keynote Speaking · Facilitation<br>
-  <a href="https://www.linkedin.com/in/liruwang/" style="color:rgba(255,255,255,.5)" target="_blank">linkedin.com/in/liruwang</a><br><br>
+  <a href="https://www.linkedin.com/in/liruwang/" style="color:rgba(255,255,255,.5)" target="_blank" rel="noopener">linkedin.com/in/liruwang</a> · <a href="privacy.html" style="color:rgba(255,255,255,.5)">Privacy</a><br><br>
   © 2026 Liru Wang. All rights reserved.
 </footer>
 
@@ -605,8 +614,10 @@ document.getElementById('survey-form').addEventListener('submit', async function
       submitted_at:     new Date().toLocaleString('en-CA', { timeZone: 'America/Edmonton' }),
       _subject:  'LTQ Assessment · ' + resultLabel + ' · ' + (formData.get('name') || 'Anonymous'),
       _template: 'table',
+      list_opt_in: document.getElementById('f-optin').checked ? 'Yes (Kit confirmation sent)' : 'No',
       _replyto:  emailVal
     };
+    if (document.getElementById('f-optin').checked) subscribeToKit(formData.get('name') || '', emailVal);
     const fd = new FormData();
     Object.entries(payload).forEach(([k, v]) => fd.append(k, v));
     const res = await fetch(SUBMIT_URL, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
@@ -617,11 +628,33 @@ document.getElementById('survey-form').addEventListener('submit', async function
   showResults(scores, verdict);
 });
 
+// Opt-in only: posts to the same Kit form as the early-reader page. Kit's double opt-in
+// sends the confirmation email, so nobody is added without clicking to confirm.
+function subscribeToKit(firstName, email) {
+  try {
+    let sink = document.getElementById('kit-sink');
+    if (!sink) {
+      sink = document.createElement('iframe');
+      sink.name = sink.id = 'kit-sink'; sink.title = 'Signup';
+      sink.style.display = 'none'; sink.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(sink);
+    }
+    const f = document.createElement('form');
+    f.method = 'POST'; f.target = 'kit-sink'; f.style.display = 'none';
+    f.action = 'https://app.kit.com/forms/10158933/subscriptions';
+    [['first_name', firstName], ['email_address', email]].forEach(([n, v]) => {
+      const i = document.createElement('input'); i.type = 'hidden'; i.name = n; i.value = v; f.appendChild(i);
+    });
+    document.body.appendChild(f); f.submit(); f.remove();
+  } catch (err) { /* never block the results */ }
+}
+
 function retake() {
   document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
   document.querySelectorAll('.question').forEach(q => q.classList.remove('unanswered'));
   document.getElementById('results').classList.remove('visible');
   document.getElementById('success-banner').style.display = 'none';
+  document.getElementById('f-optin').checked = false;
   document.getElementById('val-msg').classList.remove('visible');
   const btn = document.getElementById('btn-submit');
   btn.disabled = false;
