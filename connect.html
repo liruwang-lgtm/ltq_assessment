@@ -26,6 +26,11 @@
 #book .wrap{margin-top:2.5rem}
 .h1-second{display:block;font-size:.6em;font-style:italic;margin-top:.6rem;opacity:.9}
 .closing{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.5rem;text-align:center;max-width:none;margin:0}
+/* Photo on the left on wide screens so the portrait turns toward the text; phones keep text first */
+@media (min-width:761px){
+  .hero-split{grid-template-columns:300px 1fr}
+  .hero-split .hero-portrait{order:-1}
+}
 </style>
 </head>
 <body>
